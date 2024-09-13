@@ -124,7 +124,7 @@ The results will be saved in the `./test` folder in `.csv` format, which store t
 
 By default, all tests in the paper will performed.
 
-The REF and TAR images can be found in in `./test` folder.
+The REF and TAR images can be found in `./test` folder.
 
 You can add custom test in the `./experiment.py` file.
 
