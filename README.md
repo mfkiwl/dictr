@@ -1,5 +1,7 @@
 # DICTr: Digital image correlation based on transformer
 
+Official PyTorch implementation of paper: [**Transformer based deep learning for digital image correlation**](https://doi.org/10.1016/j.optlaseng.2024.108568)
+
 ## Introduction
 
 A DIC network developed based on GMFlow for high accuracy measurement of deformation.
@@ -137,12 +139,14 @@ The pretrained models of DICTr used in the paper is `./checkpoints/step_080000.p
 ```bibtex
 @article{ZHOU2025108568,
 title = {Transformer based deep learning for digital image correlation},
-author = {Yifei Zhou and Qianjiang Zuo and Nan Chen and Licheng Zhou and Bao Yang and Zejia Liu and Yiping Liu and Liqun Tang and Shoubin Dong and Zhenyu Jiang},
 journal = {Optics and Lasers in Engineering},
 volume = {184},
 pages = {108568},
 year = {2025},
-publisher={Elsevier}
+issn = {0143-8166},
+doi = {https://doi.org/10.1016/j.optlaseng.2024.108568},
+url = {https://www.sciencedirect.com/science/article/pii/S0143816624005463},
+author = {Yifei Zhou and Qianjiang Zuo and Nan Chen and Licheng Zhou and Bao Yang and Zejia Liu and Yiping Liu and Liqun Tang and Shoubin Dong and Zhenyu Jiang}
 }
 ```
 
