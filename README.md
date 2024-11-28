@@ -54,14 +54,15 @@ Execute the following command in the root directory of the repository:
 sh ./scripts/train.sh
 ```
 
-For reference, DICTr is trained on a system equipped with an AMD Ryzen 7 5700X@ 3.40GHz CPU, 128 GB RAM, and dual NVIDIA GeForce RTX 3090 Ti GPUs (each with 24GB VRAM). The default batch size is 12 and it took 8 hours. You may need to tune the batch size to fit your hardware.
-
 Detailed explanation of parameters in the train script:
 
 ```shell
 # name of dataset used for training
 # you can create your own dataset in the dataset.py file
 --stage speckle
+# number of image pairs used to update model parameters during each train
+# the upper limit depends on your VRAM size
+--batch_size 12
 # name of dataset used for validation
 # you can create your own dataset in the dataset.py and evaluate.py file
 --val_dataset speckle
@@ -85,9 +86,17 @@ Detailed explanation of parameters in the train script:
 --val_freq 5000
 # fequency to save model
 --save_ckpt_freq 5000
-# total train step
+# total train step for automatic stopping during UNATTENDED TRAINING
 --num_steps 100000
 ```
+
+Due to differences in VRAM across GPU devices, you may need to adjust both `batch_size` and `num_steps` to complete the training.
+
+We employ the [Early Stopping](https://en.wikipedia.org/wiki/Early_stopping) regularization approach to determine whether to stop updating the model. Specifically, the network is trained on the training set, and the validation set is periodically evaluated for a decrease in AEE. In order to prevent overfitting, training should halted once the validation performance no longer improves. The final model is then applied to running inference on the test set. **This approach means you do not need to complete all training steps** (`num_steps`).
+
+The training, validation, and test sets should not overlap to prevent data leakage. For further details, please refer to [Wikipedia](https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets).
+
+For reference, DICTr is trained on a system equipped with an AMD Ryzen 7 5700X@ 3.40GHz CPU, 128 GB RAM, and dual NVIDIA GeForce RTX 3090 Ti GPUs (each with 24GB VRAM). The default batch size is 12 and it took 8 hours.
 
 ## Running inference
 
@@ -122,7 +131,7 @@ Detailed explanation of parameters in the experiment script:
 --corr_radius_list -1 4
 ```
 
-The results will be saved in the `./test` folder in `.csv` format, which store the full-field displacement information of $u$ and $v$.
+The results will be saved in the `./test` folder in `.csv` format, which store the full-field displacement information of $u$ and $v$, separately.
 
 By default, all tests in the paper will performed.
 
