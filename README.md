@@ -8,7 +8,7 @@ A DIC network developed based on GMFlow for high accuracy measurement of deforma
 
 ![Structure](./img/dictr_flowchart.jpg)
 
-**Different from previous models that construct feature maps to directly establish the relationship between grayscale value changes and the displacements, DICTr reformulates the problem back to the image registration driven by feature matching, which has clearer physical meaning.**
+**Different from previous models that directly establish the relationship between grayscale value changes and the displacements, DICTr reformulates the problem back to the image registration driven by feature matching, which has clearer physical meaning.**
 
 ![Previous](./img/previous.jpg)
 
